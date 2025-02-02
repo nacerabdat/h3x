@@ -1,0 +1,45 @@
+#!/bin/bash
+
+# Mise à jour du système
+echo "Mise à jour du système..."
+sudo apt update && sudo apt upgrade -y
+
+# Installation de Nmap pour les scans réseau et de vulnérabilité
+echo "Installation de Nmap..."
+sudo apt install nmap -y
+
+# Installation de Metasploit Framework
+echo "Installation de Metasploit Framework..."
+
+# Installation des dépendances nécessaires pour Metasploit
+sudo apt install curl gnupg2 -y
+
+# Ajout du dépôt Metasploit
+curl https://raw.githubusercontent.com/rapid7/metasploit-omnibus/master/config/templates/apt/sources.list.d/metasploit-framework.list > /etc/apt/sources.list.d/metasploit-framework.list
+
+# Mise à jour des paquets après ajout du dépôt
+sudo apt update
+
+# Installation de Metasploit
+sudo apt install metasploit-framework -y
+
+# Installation de Git (utile pour télécharger des scripts ou exploits)
+echo "Installation de Git..."
+sudo apt install git -y
+
+# Installation des dépendances supplémentaires pour Metasploit
+echo "Installation des dépendances supplémentaires pour Metasploit..."
+sudo apt install libpq-dev libreadline-dev libpcap-dev libsqlite3-dev -y
+
+# Installation de Searchsploit (pour rechercher des exploits)
+echo "Installation de Searchsploit..."
+sudo apt install exploitdb -y
+
+# Vérification de l'installation de Metasploit
+echo "Vérification de l'installation de Metasploit..."
+msfconsole --version
+
+echo "Toutes les installations sont terminées !"
+echo "Tu peux maintenant utiliser Nmap, Metasploit, Git et Searchsploit pour tes tests de pénétration."
+
+# Fin du script
